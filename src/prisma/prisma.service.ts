@@ -7,7 +7,7 @@ export class PrismaService extends PrismaClient {
         super({
             datasources:{
                 db:{
-                    url:'mongodb+srv://sangeeth:sanghi135@nestjs.ufo8nqv.mongodb.net/test?retryWrites=true&w=majority'
+                    url:'mongodb+srv://cloud-pumex:3BUpPa2SricXqwEE@inhabitr.a4ihhlg.mongodb.net/inhabitr-backend?retryWrites=true&w=majority'
                 }
             }
         })
