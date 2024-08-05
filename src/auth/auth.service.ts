@@ -1,4 +1,4 @@
-import { BadRequestException, ConflictException, Injectable } from "@nestjs/common";
+import { BadRequestException, ConflictException, Injectable, NotFoundException } from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
 import { AuthDto } from "./dto";
 import * as bcrypt from 'bcrypt'
@@ -42,7 +42,33 @@ export class AuthService{
         return user;
     }
 
-    signin(){
+    async signin(dto:AuthDto){
+
+        const {email,password}=dto;
+
+        const companyNames = ['pumexinfotech','inhabitr'];
+
+        const isValidEmail = companyNames.some((name)=>email.includes(name));
+
+        if(!isValidEmail){
+            throw new BadRequestException('Invalid email');
+        }
+
+        const user = await this.prismaService.user.findUnique({
+            where:{email}
+        })
+
+        if(user === null){
+            throw new NotFoundException('User not found with given email');
+        }
+
+        const isPasswordValid = await bcrypt.compare(password,user.password);
+
+        if(!isPasswordValid){
+            throw new BadRequestException("User credentials doesn't match");
+        }
+   
+        return 'User logged in successfully';
         
     }
 }
