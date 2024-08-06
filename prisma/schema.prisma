@@ -30,3 +30,4 @@ model Property{
   description String?
   status Int
 }
+
