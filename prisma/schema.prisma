@@ -22,3 +22,11 @@ model User{
   status Int
   updatedAt DateTime @map("updated_at") @updatedAt
 }
+
+model Property{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  location String
+  description String?
+  status Int
+}
