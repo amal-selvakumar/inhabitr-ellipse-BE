@@ -11,16 +11,16 @@ export class OrderService{
 
         const {userId,propertyId} = dto
 
-        const user = await this.prismaService.order.findFirst({
-            where: {userId:userId}
+        const user = await this.prismaService.user.findFirst({
+            where: {id:userId}
         })
 
         if(user === null){
             throw new NotFoundException('Invalid user id')
         }
 
-        const property = await this.prismaService.order.findFirst({
-            where:{propertyId:propertyId}
+        const property = await this.prismaService.property.findFirst({
+            where:{id:propertyId}
         })
 
         if(property === null){
