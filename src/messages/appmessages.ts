@@ -1,0 +1,1 @@
+const invalidIdMessage = 'Invalid user id'

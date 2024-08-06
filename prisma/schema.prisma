@@ -21,4 +21,17 @@ model User{
   roleType Int @map("role_type")
   status Int
   updatedAt DateTime @map("updated_at") @updatedAt
+
+  orders Order[]
 }
+
+model Order{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @map("user_id") @db.ObjectId
+  propertyId String @map("property_id")
+  orderDate DateTime @map("order_date") @default(now())
+  status Int
+
+  user User @relation(fields: [userId], references: [id])
+}
+
