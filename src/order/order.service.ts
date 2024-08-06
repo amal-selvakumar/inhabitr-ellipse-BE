@@ -1,6 +1,8 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
 import { OrderDto } from "./dto/order.dto";
+import { ERROR_MESSAGES } from "src/messages/appmessages";
+
 
 @Injectable()
 export class OrderService{
@@ -16,7 +18,7 @@ export class OrderService{
         })
 
         if(user === null){
-            throw new NotFoundException('Invalid user id')
+            throw new NotFoundException(ERROR_MESSAGES.INVALID_USER_ID)
         }
 
         const property = await this.prismaService.property.findFirst({
@@ -24,7 +26,7 @@ export class OrderService{
         })
 
         if(property === null){
-            throw new NotFoundException('Invalid property id')
+            throw new NotFoundException(ERROR_MESSAGES.INVALID_PROPERTY_ID)
         }
 
         const order = await this.prismaService.order.create({
