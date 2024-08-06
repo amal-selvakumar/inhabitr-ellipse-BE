@@ -16,11 +16,26 @@ export class OrderService{
         })
 
         if(user === null){
-            throw new NotFoundException(invalidIdMessage)
+            throw new NotFoundException('Invalid user id')
         }
 
+        const property = await this.prismaService.order.findFirst({
+            where:{propertyId:propertyId}
+        })
 
+        if(property === null){
+            throw new NotFoundException('Invalid property id')
+        }
 
+        const order = await this.prismaService.order.create({
+            data:{
+                user: {connect:{id:userId}},
+                property: {connect: {id:propertyId}},
+                status: 1
+            }
+        })
+
+        return order;
     }
 
 }
