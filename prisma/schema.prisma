@@ -45,3 +45,15 @@ model Property{
 
   orders Order[]
 }
+
+model Furniture {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  description String?
+  width       Float?
+  height      Float?
+  depth       Float?
+  quantity    Int
+  status      Int
+
+}
