@@ -21,6 +21,29 @@ model User{
   roleType Int @map("role_type")
   status Int
   updatedAt DateTime @map("updated_at") @updatedAt
+
+  orders Order[]
+}
+
+model Order{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @map("user_id") @db.ObjectId
+  propertyId String @map("property_id") @db.ObjectId
+  orderDate DateTime @map("order_date") @default(now())
+  status Int
+
+  user User @relation(fields: [userId], references: [id])
+  property Property @relation(fields: [propertyId], references: [id])
+}
+
+model Property{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  location String
+  description String?
+  status Int
+
+  orders Order[]
 }
 
 model Furniture {
@@ -32,4 +55,5 @@ model Furniture {
   depth       Float?
   quantity    Int
   status      Int
+
 }
