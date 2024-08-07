@@ -1,4 +1,4 @@
-import { IsInt, IsOptional, IsString, IsNotEmpty, IsNumber } from 'class-validator';
+import { IsInt, IsOptional, IsString, IsNotEmpty, IsNumber, IsMongoId } from 'class-validator';
 
 export class CreateFurnitureDto {
   @IsString()
@@ -28,6 +28,10 @@ export class CreateFurnitureDto {
   @IsInt()
   @IsNotEmpty()
   status: number;
+
+  @IsOptional()
+  @IsMongoId() // Validates MongoDB ObjectId format
+  propertyId?: string; // Optional if you want to associate furniture with a property
 }
 
 export class UpdateFurnitureDto {
@@ -58,4 +62,8 @@ export class UpdateFurnitureDto {
   @IsOptional()
   @IsInt()
   status?: number;
+
+  @IsOptional()
+  @IsMongoId() // Validates MongoDB ObjectId format
+  propertyId?: string; // Optional if you want to update the associated property
 }

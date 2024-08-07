@@ -48,6 +48,7 @@ model Property{
   status Int
 
   orders Order[]
+  furnitures Furniture[]
 }
 
 model Furniture {
@@ -59,8 +60,9 @@ model Furniture {
   depth       Float?
   quantity    Int
   status      Int
-
-  orderDetails OrderDetails[]
+  propertyId  String @map("property_id") @db.ObjectId // Add this field
+  property    Property @relation(fields: [propertyId], references: [id])
+  OrderDetails OrderDetails[]
 }
 
 model OrderDetails{

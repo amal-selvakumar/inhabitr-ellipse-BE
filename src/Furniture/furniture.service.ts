@@ -8,7 +8,16 @@ export class FurnitureService {
 
   async create(createFurnitureDto: CreateFurnitureDto) {
     return this.prisma.furniture.create({
-      data: createFurnitureDto,
+      data: {
+        name: createFurnitureDto.name,
+        description: createFurnitureDto.description,
+        width: createFurnitureDto.width,
+        height: createFurnitureDto.height,
+        depth: createFurnitureDto.depth,
+        quantity: createFurnitureDto.quantity,
+        status: createFurnitureDto.status,
+        propertyId: createFurnitureDto.propertyId, 
+      },
     });
   }
 
@@ -29,7 +38,16 @@ export class FurnitureService {
   async update(id: string, updateFurnitureDto: UpdateFurnitureDto) {
     const furniture = await this.prisma.furniture.update({
       where: { id },
-      data: updateFurnitureDto,
+      data: {
+        name: updateFurnitureDto.name,
+        description: updateFurnitureDto.description,
+        width: updateFurnitureDto.width,
+        height: updateFurnitureDto.height,
+        depth: updateFurnitureDto.depth,
+        quantity: updateFurnitureDto.quantity,
+        status: updateFurnitureDto.status,
+        propertyId: updateFurnitureDto.propertyId, // Make sure this is included
+      },
     });
     if (!furniture) {
       throw new NotFoundException(`Furniture item with id ${id} not found`);
