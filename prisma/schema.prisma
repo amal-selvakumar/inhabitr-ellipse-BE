@@ -34,6 +34,8 @@ model Order{
 
   user User @relation(fields: [userId], references: [id])
   property Property @relation(fields: [propertyId], references: [id])
+
+  orderDetails OrderDetails[]
 }
 
 model Property{
@@ -44,6 +46,7 @@ model Property{
   status Int
 
   orders Order[]
+  furnitures Furniture[]
 }
 
 model Furniture {
@@ -55,5 +58,19 @@ model Furniture {
   depth       Float?
   quantity    Int
   status      Int
-
+  propertyId  String @map("property_id") @db.ObjectId // Add this field
+  property    Property @relation(fields: [propertyId], references: [id])
+  OrderDetails OrderDetails[]
 }
+
+model OrderDetails{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  orderId String @db.ObjectId
+  furnitureId String @db.ObjectId
+  quantity Int
+
+  order Order @relation(fields: [orderId],references: [id])
+  furniture Furniture @relation(fields: [furnitureId],references: [id])
+}
+
+
