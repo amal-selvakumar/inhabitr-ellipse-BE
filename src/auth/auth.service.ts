@@ -72,7 +72,7 @@ export class AuthService{
             throw new BadRequestException(ERROR_MESSAGES.INVALID_CREDENTIALS_MSG);
         }
    
-        return SUCCESS_MESSAGES.LOGIN_SUCCESS_MSG;
+        return user;
         
     }
 }

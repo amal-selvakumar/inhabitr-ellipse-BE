@@ -6,7 +6,8 @@ export const ERROR_MESSAGES={
     USER_NOT_FOUND_MSG:'User not found with given email',
     INVALID_CREDENTIALS_MSG:"User credentials doesn't match",
     INVALID_FURNITURE_ID:"Invalid furniture id",
-    INVALID_QUANTITY:'Invalid quantity'
+    INVALID_QUANTITY:'Invalid quantity',
+    INVALID_ORDER_ID:'No orders found'
 }
 
 export const SUCCESS_MESSAGES={

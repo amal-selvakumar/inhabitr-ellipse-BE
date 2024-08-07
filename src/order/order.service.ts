@@ -76,13 +76,12 @@ export class OrderService{
         
     }
 
-    async getOrderDetails(id:string){
+    async getOrderDetails(orderId:string){
        
-        const orderDetails = await this.prismaService.order.findMany({
-            where:{id:id},
+        const order = await this.prismaService.order.findUnique({
+            where:{id:orderId},
             include:{
                 orderDetails:{
-
                     include:{
                         furniture:true
                     }
@@ -90,7 +89,34 @@ export class OrderService{
             }
         })
 
-        return orderDetails
+        if(order === null){
+            throw new NotFoundException('No order found with given id')
+        }
+
+        const orderDetails = {
+            id: order.id,
+            userId: order.userId,
+            propertyId: order.propertyId,
+            orderDate: order.orderDate,
+            status: order.status,
+            orderDetails: order.orderDetails.map(detail => ({
+                id: detail.id,
+                quantity: detail.quantity,
+                furniture: {
+                    id: detail.furniture.id,
+                    name: detail.furniture.name,
+                    description: detail.furniture.description,
+                    width: detail.furniture.width,
+                    height: detail.furniture.height,
+                    depth: detail.furniture.depth,
+                    quantity: detail.furniture.quantity,
+                    status: detail.furniture.status,
+                },
+            })),
+            
+        }
+
+        return orderDetails;
     }
 
 }
