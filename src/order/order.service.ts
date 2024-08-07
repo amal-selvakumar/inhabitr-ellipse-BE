@@ -11,7 +11,7 @@ export class OrderService{
 
     async placeOrder(dto:OrderDto){
 
-        const {userId,propertyId} = dto
+        const {userId,propertyId,furnitures} = dto
 
         const user = await this.prismaService.user.findFirst({
             where: {id:userId}
@@ -33,7 +33,16 @@ export class OrderService{
             data:{
                 user: {connect:{id:userId}},
                 property: {connect: {id:propertyId}},
-                status: 1
+                status: 1,
+                orderDetails:{
+                    create:furnitures.map((item)=>({
+                        furnitureId:item.furnitureId,
+                        quantity:item.quantity
+                    }))
+                }
+            },
+            include:{
+                orderDetails:true
             }
         })
 
