@@ -90,7 +90,7 @@ export class OrderService{
         })
 
         if(order === null){
-            throw new NotFoundException('No order found with given id')
+            throw new NotFoundException(ERROR_MESSAGES.INVALID_ORDER_ID)
         }
 
         const orderDetails = {
