@@ -11,7 +11,7 @@ export class AuthService{
 
     async signup(dto:AuthDto){
 
-        const {email,password} = dto
+        const {email,password,contactName,contactNumber} = dto
         const companyNames = ['pumexinfotech','inhabitr'];
 
         const isValidEmail = companyNames.some((name)=>email.includes(name));
@@ -33,8 +33,10 @@ export class AuthService{
 
         const user = this.prismaService.user.create({
             data:{
+                contactName:contactName,
                 email:email,
                 password:hashedPassword,
+                contactNumber:contactNumber,
                 roleType:2,
                 status:1
             }
