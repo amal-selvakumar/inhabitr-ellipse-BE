@@ -1,15 +1,16 @@
 import { BadRequestException, ConflictException, Injectable, NotFoundException } from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
-import { AuthDto } from "./dto";
 import * as bcrypt from 'bcrypt'
 import { ERROR_MESSAGES, SUCCESS_MESSAGES } from "src/messages/appmessages";
+import { SignupDto } from "./dto/signup.dto";
+import { SigninDto } from "./dto/signin.dto";
 
 @Injectable()
 export class AuthService{
 
     constructor(private prismaService:PrismaService){}
 
-    async signup(dto:AuthDto){
+    async signup(dto:SignupDto){
 
         const {email,password,contactName,contactNumber} = dto
         const companyNames = ['pumexinfotech','inhabitr'];
@@ -45,7 +46,7 @@ export class AuthService{
         return user;
     }
 
-    async signin(dto:AuthDto){
+    async signin(dto:SigninDto){
 
         const {email,password}=dto;
 

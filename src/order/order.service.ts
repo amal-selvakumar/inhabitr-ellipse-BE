@@ -76,4 +76,22 @@ export class OrderService{
         
     }
 
+    async getOrderDetails(id:string){
+       
+        const orderDetails = await this.prismaService.order.findMany({
+            where:{id:id},
+            include:{
+                orderDetails:{
+
+                    include:{
+                        furniture:true
+                    }
+                }
+            }
+        })
+
+        return orderDetails
+    }
+
 }
+
