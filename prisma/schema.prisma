@@ -58,17 +58,18 @@ model Furniture {
   quantity    Int
   status      Int
 
-  OrderDetails OrderDetails[]
+  orderDetails OrderDetails[]
 }
 
 model OrderDetails{
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  orderId String @db.ObjectId
-  furnitureId String @db.ObjectId
+  orderId String @map("order_id") @db.ObjectId
+  furnitureId String @map("furniture_id") @db.ObjectId
   quantity Int
 
   order Order @relation(fields: [orderId],references: [id])
-  furniture Furniture @relation(fields: [furnitureId],references: [id])
+  furniture Furniture @relation(fields: [furnitureId], references: [id])
 }
+
 
 

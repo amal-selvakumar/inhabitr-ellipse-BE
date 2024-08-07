@@ -1,5 +1,5 @@
-import { IsNotEmpty, IsString } from "class-validator"
-import { FurnitureOrderDto } from "./furnitureorder.dto"
+import { IsArray, IsNotEmpty, IsString } from "class-validator"
+import { OrderDetailsDto } from "./orderdetails.dto"
 
 export class OrderDto{
     
@@ -11,6 +11,8 @@ export class OrderDto{
     @IsNotEmpty()
     propertyId:string
 
-    furnitures:FurnitureOrderDto[];
+    @IsArray()
+    @IsNotEmpty()
+    furnitures:OrderDetailsDto[]
 
 }
