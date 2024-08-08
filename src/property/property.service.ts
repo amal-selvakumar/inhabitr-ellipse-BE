@@ -17,4 +17,14 @@ export class PropertyService {
 
     return property;
   }
+
+  async getProperties(){
+
+    return await this.prismaService.property.findMany({
+      include:{
+        furnitures:true
+      }
+    });
+
+  }
 }

@@ -18,7 +18,7 @@ model User{
   contactName String @map("contact_name")
   email String @unique
   password String
-  contactNumber String @map("contact_number") @unique
+  contactNumber String @map("contact_number")
   createdAt DateTime @map("created_at") @default(now())
   roleType Int @map("role_type")
   status Int
@@ -60,8 +60,8 @@ model Furniture {
   depth       Float?
   quantity    Int
   status      Int
-  propertyId  String @map("property_id") @db.ObjectId // Add this field
-  property    Property @relation(fields: [propertyId], references: [id])
+  propertyId  String? @map("property_id") @db.ObjectId // Add this field
+  property    Property? @relation(fields: [propertyId], references: [id])
   OrderDetails OrderDetails[]
 }
 

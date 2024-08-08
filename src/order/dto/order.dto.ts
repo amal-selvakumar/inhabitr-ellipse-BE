@@ -1,13 +1,13 @@
-import { IsArray, IsNotEmpty, IsString } from "class-validator"
+import { IsArray, IsMongoId, IsNotEmpty, IsString } from "class-validator"
 import { OrderDetailsDto } from "./orderdetails.dto"
 
 export class OrderDto{
     
-    @IsString()
+    @IsMongoId()
     @IsNotEmpty()
     userId:string
 
-    @IsString()
+    @IsMongoId()
     @IsNotEmpty()
     propertyId:string
 

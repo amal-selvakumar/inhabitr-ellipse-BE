@@ -1,5 +1,5 @@
 export const ERROR_MESSAGES={
-    INVALID_USER_ID:'Invalid user id',
+    INVALID_USER_ID:'User not found with given id',
     INVALID_PROPERTY_ID:'No properties found with given id',
     INVALID_EMAIL_ID:'Invalid email id',
     DUPLICATE_USER_MSG:'User with given email exists',

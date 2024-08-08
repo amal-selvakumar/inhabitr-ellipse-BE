@@ -9,4 +9,9 @@ export class PropertyController {
   async getPropertyWithFurniture(@Param('id') id: string) {
     return this.propertyService.getPropertyWithFurniture(id);
   }
+
+  @Get()
+  getAllProperties(){
+    return this.propertyService.getProperties();
+  }
 }
