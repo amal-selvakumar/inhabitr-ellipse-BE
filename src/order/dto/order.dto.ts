@@ -1,16 +1,16 @@
-import { IsNotEmpty, IsString } from "class-validator"
-import { FurnitureOrderDto } from "./furnitureorder.dto"
+import { IsArray, IsMongoId, IsNotEmpty, IsString } from 'class-validator';
+import { OrderDetailsDto } from './orderdetails.dto';
 
-export class OrderDto{
-    
-    @IsString()
-    @IsNotEmpty()
-    userId:string
+export class OrderDto {
+  @IsMongoId()
+  @IsNotEmpty()
+  userId: string;
 
-    @IsString()
-    @IsNotEmpty()
-    propertyId:string
+  @IsMongoId()
+  @IsNotEmpty()
+  propertyId: string;
 
-    furnitures:FurnitureOrderDto[];
-
+  @IsArray()
+  @IsNotEmpty()
+  furnitures: OrderDetailsDto[];
 }

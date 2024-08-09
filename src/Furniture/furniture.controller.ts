@@ -21,9 +21,7 @@ export class FurnitureController {
   }
 
   @Get()
-  findAll(@Session() session: Record<string, any>) {
-    console.log(session);
-    console.log(session.id);
+  findAll() {
     return this.furnitureService.findAll();
   }
 
