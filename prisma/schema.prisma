@@ -59,6 +59,7 @@ model Furniture {
   height      Float?
   depth       Float?
   quantity    Int
+  price       Int?
   status      Int
   propertyId  String? @map("property_id") @db.ObjectId // Add this field
   property    Property? @relation(fields: [propertyId], references: [id])

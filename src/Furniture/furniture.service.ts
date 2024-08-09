@@ -15,6 +15,7 @@ export class FurnitureService {
         height: createFurnitureDto.height,
         depth: createFurnitureDto.depth,
         quantity: createFurnitureDto.quantity,
+        price:createFurnitureDto.price,
         status: createFurnitureDto.status,
         propertyId: createFurnitureDto.propertyId, 
       },
@@ -45,6 +46,7 @@ export class FurnitureService {
         height: updateFurnitureDto.height,
         depth: updateFurnitureDto.depth,
         quantity: updateFurnitureDto.quantity,
+        price:updateFurnitureDto.price,
         status: updateFurnitureDto.status,
         propertyId: updateFurnitureDto.propertyId, // Make sure this is included
       },

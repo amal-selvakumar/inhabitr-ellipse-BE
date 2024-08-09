@@ -21,6 +21,10 @@ export class CreateFurnitureDto {
   @IsNumber()
   depth?: number;
 
+  @IsOptional()
+  @IsNumber()
+  price?:number
+
   @IsInt()
   @IsNotEmpty()
   quantity: number;
@@ -54,6 +58,10 @@ export class UpdateFurnitureDto {
   @IsOptional()
   @IsNumber()
   depth?: number;
+
+  @IsOptional()
+  @IsNumber()
+  price?:number
 
   @IsOptional()
   @IsInt()
